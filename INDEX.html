@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Planeta dos Macacos</title>
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    :root {
+      --bg: #ece9e7;
+      --surface: #f7f5f3;
+      --ink: #3a2e29;
+      --muted: #6f6661;
+      --brown: #7a5a48;
+      --gray: #b9b3ae;
+      --purple: #3a2e29;
+      --line: #d6d1cc;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--ink);
+      font-family: "Open Sans", Arial, sans-serif;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    h1,
+    h2,
+    h3,
+    .quiz-question legend,
+    summary,
+    caption,
+    th {
+      font-family: "Lucida Bright", Georgia, serif;
+    }
+
+    .brand,
+    nav a,
+    .btn {
+      font-family: "Open Sans", Arial, sans-serif;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      line-height: 1.2;
+      margin-bottom: 0.8rem;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.3rem;
+    }
+
+    p {
+      max-width: 62ch;
+    }
+
+    a {
+      color: var(--purple);
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--purple);
+      outline-offset: 3px;
+    }
+
+    header {
+      background-color: var(--surface);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+
+    .bar {
+      max-width: 1040px;
+      margin: auto;
+      padding: 0.8rem 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.5rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-weight: 700;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      border-radius: 6px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+    }
+
+    nav a {
+      padding: 0.35rem 0.8rem;
+      border-radius: 99px;
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    nav a[aria-current="page"] {
+      background-color: var(--ink);
+      color: var(--surface);
+    }
+
+    .page {
+      display: none;
+    }
+
+    .page.on {
+      display: block;
+    }
+
+    section {
+      max-width: 1040px;
+      margin: auto;
+      padding: 3.5rem 1.25rem;
+    }
+
+    section + section {
+      border-top: 1px solid var(--line);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .hero p {
+      margin: 1.2rem 0 1.6rem;
+      color: var(--muted);
+    }
+
+    .hero img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+    }
+
+    .capa {
+      max-width: 1240px;
+      min-height: calc(100vh - 5rem);
+    }
+
+    .capa h1 {
+      font-size: clamp(3rem, 8vw, 6rem);
+    }
+
+    .capa p {
+      font-size: 1.5rem;
+      max-width: 52ch;
+    }
+
+    .trabalho {
+      border-top: none;
+      padding-top: 0;
+      text-align: center;
+      scroll-margin-top: 5rem;
+    }
+
+    .trabalho-layout {
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(1450px, calc(100vw - 1.5rem));
+      display: grid;
+      grid-template-columns: minmax(260px, 1fr) minmax(0, 1.6fr) minmax(260px, 1fr);
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .trabalho-img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 0;
+    }
+
+    .trabalho h2 {
+      font-size: 2.6rem;
+    }
+
+    .trabalho p {
+      font-size: 1.3rem;
+      max-width: 68ch;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .trabalho p + p {
+      margin-top: 1.2rem;
+    }
+
+    .linha {
+      width: min(520px, 84%);
+      height: 2px;
+      border: 0;
+      background-color: var(--ink);
+      margin: 0 auto 1.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--purple);
+      color: #ffffff;
+      padding: 0.7rem 1.4rem;
+      border-radius: 99px;
+      text-decoration: none;
+      font-weight: 700;
+      border: 0;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .btn:hover {
+      background-color: #rgb(44, 35, 31)
+
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .item {
+      border-left: 3px solid var(--brown);
+      padding-left: 1rem;
+    }
+
+    .item p {
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .quote {
+      background-color: var(--surface);
+      padding: 1.2rem;
+      border-radius: 10px;
+      font-style: italic;
+    }
+
+    .quote small {
+      display: block;
+      margin-top: 0.6rem;
+      font-style: normal;
+      color: var(--muted);
+    }
+
+    .stat b {
+      display: block;
+      font-family: "Open Sans", Arial, sans-serif;
+      font-size: 2.6rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--purple);
+    }
+
+    .ph {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background-color: var(--gray);
+      margin-bottom: 0.6rem;
+      display: grid;
+      place-items: center;
+      font-family: "Open Sans", Arial, sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--surface);
+    }
+
+    ul.ok {
+      padding-left: 1.2rem;
+      max-width: 62ch;
+    }
+
+    .cta {
+      text-align: center;
+      background-color: var(--ink);
+      color: var(--surface);
+      max-width: none;
+    }
+
+    .cta p {
+      margin: 0 auto 1.4rem;
+      color: var(--gray);
+    }
+
+    .cta .btn {
+      background-color: var(--surface);
+      color: var(--ink);
+    }
+
+    .cta .btn:hover {
+      background-color: var(--gray);
+    }
+
+    details {
+      border-bottom: 1px solid var(--line);
+      padding: 0.9rem 0;
+      max-width: 68ch;
+    }
+
+    summary {
+      cursor: pointer;
+      font-family: "Lucida Bright", Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    details p {
+      margin-top: 0.5rem;
+      color: var(--muted);
+    }
+
+    .book {
+      display: grid;
+      grid-template-columns: minmax(180px, 250px) 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    .book-cover {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 6px 18px rgba(58, 46, 41, 0.18);
+    }
+
+    .book-details { max-width: 780px; }
+
+    .book-details p + p { margin-top: 1rem; }
+
+    .book-details h2 { margin-top: 1.6rem; }
+
+    #conteudo section,
+    #autor section,
+    #livro section {
+      text-align: center;
+    }
+
+    #conteudo section p,
+    #autor section p,
+    #livro section p {
+      font-size: 1.2rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    #conteudo h2,
+    #autor h2,
+    #livro h2 {
+      font-size: 2rem;
+    }
+
+    #conteudo h3,
+    #autor h3,
+    #livro h3 {
+      font-size: 1.3rem;
+    }
+
+    #conteudo section:nth-of-type(2) > h2 {
+      text-align: center;
+      font-size: 2rem;
+    }
+
+    #conteudo .item {
+      border-left: 3px solid var(--brown);
+      padding-left: 1rem;
+      text-align: left;
+    }
+
+    #conteudo .item p {
+      font-size: 0.98rem;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    #autor .item,
+    #livro .item {
+      border-left: 0;
+      padding-left: 0;
+      text-align: center;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 1.5rem;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--surface);
+    }
+
+    table {
+      width: 100%;
+      min-width: 640px;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    caption {
+      padding: 1rem;
+      font-family: "Lucida Bright", Georgia, serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      text-align: left;
+    }
+
+    th, td {
+      padding: 0.9rem 1rem;
+      border-top: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    th {
+      background: #e3ded9;
+      font-family: "Lucida Bright", Georgia, serif;
+    }
+
+
+    #quiz section {
+      max-width: 900px;
+    }
+
+    .quiz-question {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 1.25rem;
+      margin: 1.25rem 0;
+      background: var(--surface);
+    }
+
+    .quiz-question legend {
+      padding: 0 0.35rem;
+      font-family: "Lucida Bright", Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .quiz-option {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.7rem 0.85rem;
+      margin-top: 0.55rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.15s, border-color 0.15s;
+    }
+
+    .quiz-option:hover {
+      background: #eee9f4;
+      border-color: var(--purple);
+    }
+
+    .quiz-option:has(input:checked) {
+      background: #eee9f4;
+      border-color: var(--purple);
+    }
+
+    .quiz-option input {
+      accent-color: var(--purple);
+      width: 1.1rem;
+      height: 1.1rem;
+      flex: 0 0 auto;
+    }
+
+    .quiz-feedback {
+      margin-top: 0.75rem;
+      font-weight: 700;
+    }
+
+    #quiz-result {
+      min-height: 1.7rem;
+      margin: 1rem 0;
+      font-family: "Open Sans", Arial, sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .integrantes-heading {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .integrantes-heading p {
+      margin: 0.5rem auto 0;
+      color: var(--muted);
+      font-size: 1.2rem;
+    }
+
+    .integrantes-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .integrante {
+      padding: 1.4rem;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .integrante:last-child {
+      grid-column: 1 / -1;
+      justify-self: center;
+      width: calc(50% - 0.625rem);
+    }
+
+    .integrante p {
+      margin: 0.35rem auto 0;
+      color: var(--muted);
+    }
+
+    .price {
+      background-color: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 1.2rem;
+    }
+
+    .price b {
+      display: block;
+      font-family: "Open Sans", Arial, sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1.25rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--line);
+    }
+
+    @media screen and (max-width: 960px) {
+      .trabalho-layout {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .trabalho-copy {
+        grid-column: 1 / -1;
+        grid-row: 2;
+      }
+    }
+
+    @media screen and (max-width: 760px) {
+
+      .hero,
+      .book {
+        grid-template-columns: 1fr;
+      }
+
+      .trabalho-layout {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .trabalho-copy {
+        grid-column: 1 / -1;
+        grid-row: 2;
+      }
+
+      .book-cover {
+        max-width: 220px;
+      }
+
+    }
+
+  
+  </style>
+
+</head>
+
+<body>
+
+  <header>
+
+    <div class="bar">
+
+      <a class="brand" href="#inicio">
+        <img src="https://i.ibb.co/nM5NWymZ/LOGO.png" alt="">
+        <span>O Estrangeiro e o Choque Cultural</span>
+      </a>
+
+      <nav aria-label="Principal">
+        <a href="#inicio">Home</a>
+        <a href="#livro">Livro</a>
+        <a href="#autor">Autor</a>
+        <a href="#conteudo">Conteúdo</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#quiz">Quiz</a>
+      </nav>
+
+    </div>
+
+  </header>
+
+  <main>
+
+    <div class="page" id="inicio">
+
+      <section class="hero capa">
+
+        <div>
+          <h1>O Estrangeiro e o Choque Cultural</h1>
+
+          <p>Ulysse chega a um mundo onde tudo está invertido e precisa se adaptar sozinho. Discute a experiência de ser o "outro" em um lugar que não reconhece sua condição.</p>
+
+          <a class="btn" id="explorar" href="#trabalho">Explorar</a>
+        </div>
+
+        <img src="https://i.ibb.co/nM5NWymZ/LOGO.png" alt="Planeta dos Macacos">
+
+      </section>
+
+      <hr class="linha">
+      <section class="trabalho" id="trabalho">
+        <div class="trabalho-layout">
+          <img class="trabalho-img" src="https://pbs.twimg.com/media/HT4CTlSXkAARqU3?format=png&name=900x900" alt="Ilustração do projeto, lado esquerdo" loading="lazy">
+          <div class="trabalho-copy">
+            <h2>SOBRE O TRABALHO</h2>
+            <p>Esse site faz parte do Projeto Integrado de IW, AD e Língua Portuguesa, nosso projeto é sobre o livro Planeta dos Macacos, de Pierre Boulle, mostrando alguns dos principais pontos da obra e falando mais sobre o autor</p>
+            <p>Nosso grupo ficou com o Subtema 2 — O estrangeiro e o choque cultural, que fala sobre a chegada de Ulysse em um mundo totalmente diferente, onde ele é visto como o "outro" e precisa lidar com várias diferenças culturais e situações novas</p>
+          </div>
+          <img class="trabalho-img" src="https://pbs.twimg.com/media/HT4CeVKWEAAQii4?format=png&name=900x900" alt="Ilustração do projeto, lado direito" loading="lazy">
+        </div>
+      </section>
+
+    </div>
+
+    <div class="page" id="sobre">
+      <section>
+        <div class="integrantes-heading">
+          <h1>INTEGRANTES DO GRUPO</h1>
+          <p>ETEC Parque Belém</p>
+        </div>
+        <div class="integrantes-grid">
+          <article class="integrante">
+            <h2>LIS ELIANA</h2>
+            <p>1º Informática para Internet</p>
+          </article>
+          <article class="integrante">
+            <h2>KALYSSA</h2>
+            <p>1º Informática para Internet</p>
+          </article>
+          <article class="integrante">
+            <h2>HELOISA</h2>
+            <p>1º Informática para Internet</p>
+          </article>
+          <article class="integrante">
+            <h2>MARIANA</h2>
+            <p>1º Informática para Internet</p>
+          </article>
+          <article class="integrante">
+            <h2>FELIPE ALVES</h2>
+            <p>1º Informática para Internet</p>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <div class="page" id="conteudo">
+      <section>
+        <h1>Ulysse e o choque cultural</h1>
+        <p style="margin-top: 1rem;">Em <i>Planeta dos Macacos</i>, o jornalista Ulysse Mérou chega ao planeta Soror e encontra uma sociedade muito diferente da que conhece. Os macacos ocupam o lugar de poder e os humanos são tratados como animais. A partir dessa inversão a história mostra como é difícil chegar a um lugar onde ninguém entende seus costumes, e nem acredita no que você diz.</p>
+      </section>
+      <section>
+        <h2>1. Ulysse como estrangeiro</h2>
+        <p>Ulysse é um estrangeiro em Soror porque não conhece as regras, os hábitos nem a organização daquele mundo. Além disso, os habitantes não o veem como uma pessoa capaz de pensar. Ele precisa observar o que acontece ao redor e encontrar um jeito de se comunicar, enquanto tenta mostrar quem realmente é.</p>
+        <p>Essa situação se parece com chegar num lugar novo e sentir que não pertence a ele. No caso de Ulysse sua inteligência também é colocada em dúvida.</p>
+      </section>
+      <section>
+        <h2>2. O choque cultural</h2>
+        <p>O choque cultural aparece quando Ulysse percebe que coisas que pareciam naturais para ele funcionam de outro jeito em Soror. Na Terra, os humanos dominam os animais; no planeta, os macacos controlam a sociedade e os humanos vivem em cativeiro. Essa mudança deixa Ulysse confuso e obriga ele a rever tudo que considerava normal.</p>
+        <p>A convivência com Zira e Cornélius ajuda Ulysse a aprender mais sobre os costumes e as ideias dos macacos. Ao mesmo tempo o contato com ele faz alguns deles questionarem o que acreditavam sobre os humanos.</p>
+      </section>
+      <section>
+        <h2>3. Identidade, adaptação e poder</h2>
+        <p>Mesmo quando ninguém acredita nele, Ulysse continua tentando provar que é humano e que consegue pensar. Sua jornada mostra que adaptar-se a uma cultura nova não significa esquecer quem você é. Também faz pensar em como o poder e o preconceito podem decidir quem recebe respeito e quem é tratado como inferior.</p>
+        <div class="table-wrap">
+          <table>
+            <caption>Temas do livro ligados à experiência de Ulysse</caption>
+            <thead>
+              <tr><th scope="col">Tema</th><th scope="col">Como aparece na história</th><th scope="col">Relação com Ulysse</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Ser estrangeiro</th><td>Ulysse chega a uma sociedade cujos costumes e regras não conhece.</td><td>Ele precisa observar, aprender e encontrar formas de se comunicar.</td></tr>
+              <tr><th scope="row">Choque cultural</th><td>Em Soror, os macacos dominam e os humanos são tratados como animais.</td><td>A inversão confunde Ulysse e muda sua visão sobre o que parecia natural.</td></tr>
+              <tr><th scope="row">Identidade e poder</th><td>A sociedade dos macacos nega que humanos possam ser inteligentes.</td><td>Ulysse luta para ser reconhecido como pessoa e manter sua identidade.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <div class="page" id="autor">
+      <section>
+        <h1>Pierre Boulle</h1>
+        <p style="margin-top: 1rem;">Pierre Boulle nasceu em Avignon, na França, em 1912. Estudou engenharia elétrica e, em 1936, foi trabalhar numa plantação de borracha na Malásia. A vida no Sudeste Asiático mudou seus planos: durante a Segunda Guerra Mundial, participou de missões da França Livre e foi capturado e preso em Saigon.</p>
+        <p style="margin-top: 1rem;">Depois da guerra voltou à França e acabou escolhendo a literatura como profissão. A partir de 1949, publicou romances, contos e outros textos, criando histórias de aventura e ficção científica que também fazem o leitor pensar.</p>
+      </section>
+      <section>
+        <h2>Obras e contribuição</h2>
+        <p>Entre seus livros mais conhecidos estão <i>A Ponte do Rio Kwai</i> (1952) e <i>Planeta dos Macacos</i> (1963). Os dois romances ganharam adaptações para o cinema e ajudaram a levar seu trabalho a leitores do mundo todo.</p>
+        <p style="margin-top: 1rem;">A contribuição de Boulle está em combinar histórias envolventes com perguntas sobre a sociedade. Em <i>Planeta dos Macacos</i>, por exemplo, ele inverte a relação entre humanos e animais para questionar preconceitos, hierarquias e a ideia de que um grupo é naturalmente superior a outro.</p>
+      </section>
+    </div>
+
+    <div class="page" id="livro">
+      <section class="book">
+        <img class="book-cover" src="https://m.media-amazon.com/images/I/61fo0Hgb1nL._AC_UF1000,1000_QL80_.jpg" alt="Capa do livro Planeta dos Macacos, de Pierre Boulle">
+        <div class="book-details">
+          <h1>Planeta dos Macacos</h1>
+          <p style="margin: 1rem 0;">Romance de ficção científica escrito pelo francês Pierre Boulle e publicado em 1963. O título original é <i>La Planète des singes</i>.</p>
+          <h2>Contexto e enredo</h2>
+          <p>A história acompanha Ulysse Mérou, um jornalista que parte numa viagem espacial com o professor Antelle e o físico Arthur Levain. Quando chegam em Soror eles encontram um planeta parecido com a Terra, só que os macacos construíram uma civilização e os humanos vivem em estado selvagem.</p>
+          <p>Depois de ser capturado Ulysse tenta provar que consegue pensar e se comunicar. Zira, uma cientista chimpanzé, passa a observá-lo e ajudá-lo; Cornélius, também cientista, se interessa pelo que Ulysse pode revelar sobre a história do planeta. A jornada acompanha a tentativa de Ulysse de ser reconhecido como pessoa num mundo que o considera inferior.</p>
+          <h2>Por que esse livro é importante?</h2>
+          <p>Boulle usa a inversão entre humanos e macacos para criar uma aventura que também é uma crítica social. O livro faz a gente pensar sobre preconceito, poder, ciência e sobre como julgamos a inteligência dos outros.</p>
+          <p>A obra ficou conhecida internacionalmente e inspirou adaptações para o cinema, começando pelo filme de 1968. O romance, porém, tem sua própria história e desenvolve de um jeito particular a experiência de Ulysse como estrangeiro.</p>
+        </div>
+      </section>
+    </div>
+
+    <div class="page" id="quiz">
+      <section>
+        <h1>QUIZ</h1>
+        <p style="margin-top: 1rem;">Escola as alternativas das perguntas sobre planeta dos macacos</p>
+
+        <form id="quiz-form">
+          <fieldset class="quiz-question" data-correct="b">
+            <legend>1. Quem escreveu <i>Planeta dos Macacos</i>?</legend>
+            <label class="quiz-option"><input type="radio" name="q1" value="a"><span><b>A)</b> Albert Camus</span></label>
+            <label class="quiz-option"><input type="radio" name="q1" value="b"><span><b>B)</b> Pierre Boulle</span></label>
+            <label class="quiz-option"><input type="radio" name="q1" value="c"><span><b>C)</b> Júlio Verne</span></label>
+            <p class="quiz-feedback" aria-live="polite"></p>
+          </fieldset>
+
+          <fieldset class="quiz-question" data-correct="a">
+            <legend>2. Qual é o nome do planeta explorado por Ulysse e seus companheiros?</legend>
+            <label class="quiz-option"><input type="radio" name="q2" value="a"><span><b>A)</b> Soror</span></label>
+            <label class="quiz-option"><input type="radio" name="q2" value="b"><span><b>B)</b> Marte</span></label>
+            <label class="quiz-option"><input type="radio" name="q2" value="c"><span><b>C)</b> Betelgeuse</span></label>
+            <p class="quiz-feedback" aria-live="polite"></p>
+          </fieldset>
+
+          <fieldset class="quiz-question" data-correct="c">
+            <legend>3. Qual é a profissão de Ulysse Mérou?</legend>
+            <label class="quiz-option"><input type="radio" name="q3" value="a"><span><b>A)</b> Arqueólogo</span></label>
+            <label class="quiz-option"><input type="radio" name="q3" value="b"><span><b>B)</b> Piloto de navio</span></label>
+            <label class="quiz-option"><input type="radio" name="q3" value="c"><span><b>C)</b> Jornalista</span></label>
+            <p class="quiz-feedback" aria-live="polite"></p>
+          </fieldset>
+
+          <fieldset class="quiz-question" data-correct="b">
+            <legend>4. Quem é Zira?</legend>
+            <label class="quiz-option"><input type="radio" name="q4" value="a"><span><b>A)</b> Uma humana que acompanha Ulysse</span></label>
+            <label class="quiz-option"><input type="radio" name="q4" value="b"><span><b>B)</b> Uma cientista chimpanzé que se interessa pelo caso de Ulysse</span></label>
+            <label class="quiz-option"><input type="radio" name="q4" value="c"><span><b>C)</b> A comandante da nave</span></label>
+            <p class="quiz-feedback" aria-live="polite"></p>
+          </fieldset>
+
+          <fieldset class="quiz-question" data-correct="a">
+            <legend>5. O que acontece com os humanos em Soror?</legend>
+            <label class="quiz-option"><input type="radio" name="q5" value="a"><span><b>A)</b> São tratados como animais, enquanto os macacos dominam a sociedade</span></label>
+            <label class="quiz-option"><input type="radio" name="q5" value="b"><span><b>B)</b> Governam os macacos</span></label>
+            <label class="quiz-option"><input type="radio" name="q5" value="c"><span><b>C)</b> Vivem todos na nave de Ulysse</span></label>
+            <p class="quiz-feedback" aria-live="polite"></p>
+          </fieldset>
+
+          <button class="btn" type="submit">Conferir respostas</button>
+          <button class="btn" type="reset">Tentar de novo</button>
+          <p id="quiz-result" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+    </div>
+
+  </main>
+
+  <script>
+
+    const pages = [...document.querySelectorAll(".page")];
+    const links = [...document.querySelectorAll("nav a")];
+
+    function mostrarPagina() {
+
+      const id = (location.hash || "#inicio").slice(1);
+      const alvo = pages.find(function (p) { return p.id === id; }) || pages[0];
+
+      pages.forEach(function (p) {
+        p.classList.toggle("on", p === alvo);
+      });
+
+      links.forEach(function (a) {
+        if (a.getAttribute("href") === "#" + alvo.id) {
+          a.setAttribute("aria-current", "page");
+        } else {
+          a.removeAttribute("aria-current");
+        }
+      });
+
+      window.scrollTo(0, 0);
+
+    }
+
+    document.getElementById("explorar").addEventListener("click", function (evento) {
+      evento.preventDefault();
+      document.getElementById("trabalho").scrollIntoView({ behavior: "smooth" });
+    });
+
+
+    const quizForm = document.getElementById("quiz-form");
+    quizForm.addEventListener("submit", function (evento) {
+      evento.preventDefault();
+      const perguntas = [...quizForm.querySelectorAll(".quiz-question")];
+      let acertos = 0;
+      let respondeuTudo = true;
+
+      perguntas.forEach(function (pergunta) {
+        const selecionada = pergunta.querySelector("input:checked");
+        const feedback = pergunta.querySelector(".quiz-feedback");
+        if (!selecionada) {
+          respondeuTudo = false;
+          feedback.textContent = "Escolha uma alternativa para esta pergunta.";
+          feedback.style.color = "var(--brown)";
+          return;
+        }
+        if (selecionada.value === pergunta.dataset.correct) {
+          acertos++;
+          feedback.textContent = "RESPOSTA CORRETA"
+          feedback.style.color = "#28734a";
+        } else {
+          feedback.textContent = "RESPOSTA INCORRETA"
+          feedback.style.color = "#9b3f35";
+        }
+      });
+
+      const resultado = document.getElementById("quiz-result");
+      resultado.textContent = respondeuTudo
+        ? "Você acertou " + acertos + " de " + perguntas.length + " perguntas!"
+        : "Responde todas as perguntas para ver sua pontuação.";
+    });
+
+    quizForm.addEventListener("reset", function () {
+      window.setTimeout(function () {
+        quizForm.querySelectorAll(".quiz-feedback").forEach(function (feedback) {
+          feedback.textContent = "";
+        });
+        document.getElementById("quiz-result").textContent = "";
+      }, 0);
+    });
+
+    window.addEventListener("hashchange", mostrarPagina);
+    mostrarPagina();
+
+  </script>
+
+</body>
+
+</html>
