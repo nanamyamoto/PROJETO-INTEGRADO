@@ -34,7 +34,7 @@
       background-color: var(--bg);
       color: var(--ink);
       font-family: "Open Sans", Arial, sans-serif;
-      font-size: 1.05rem;
+      font-size: 1.175rem;
       line-height: 1.7;
     }
 
@@ -360,12 +360,44 @@
       align-items: start;
     }
 
+    .book-sidebar {
+      display: grid;
+      gap: 1rem;
+      align-content: start;
+    }
+
     .book-cover {
       display: block;
       width: 100%;
       height: auto;
       border-radius: 8px;
       box-shadow: 0 6px 18px rgba(58, 46, 41, 0.18);
+    }
+
+    .book-info {
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      text-align: left;
+    }
+
+    .book-info h2 {
+      margin: 0 0 0.75rem;
+      font-size: 1.2rem;
+    }
+
+    .book-info dl {
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    .book-info dt {
+      font-weight: 700;
+    }
+
+    .book-info dd {
+      color: var(--muted);
     }
 
     .book-details { max-width: 780px; }
@@ -613,7 +645,6 @@
 
     }
 
-  
   </style>
 
 </head>
@@ -653,14 +684,16 @@
 
           <p>Ulysse chega a um mundo onde tudo está invertido e precisa se adaptar sozinho. Discute a experiência de ser o "outro" em um lugar que não reconhece sua condição.</p>
 
-          <a class="btn" id="explorar" href="#trabalho">Explorar</a>
+          <a class="btn" id="explorar" href="#livro">Explorar</a>
         </div>
 
         <img src="https://i.ibb.co/nM5NWymZ/LOGO.png" alt="Planeta dos Macacos">
 
       </section>
 
-      <hr class="linha">
+    </div>
+
+    <div class="page" id="sobre">
       <section class="trabalho" id="trabalho">
         <div class="trabalho-layout">
           <img class="trabalho-img" src="https://pbs.twimg.com/media/HT4CTlSXkAARqU3?format=png&name=900x900" alt="Ilustração do projeto, lado esquerdo" loading="lazy">
@@ -672,10 +705,6 @@
           <img class="trabalho-img" src="https://pbs.twimg.com/media/HT4CeVKWEAAQii4?format=png&name=900x900" alt="Ilustração do projeto, lado direito" loading="lazy">
         </div>
       </section>
-
-    </div>
-
-    <div class="page" id="sobre">
       <section>
         <div class="integrantes-heading">
           <h1>INTEGRANTES DO GRUPO</h1>
@@ -704,6 +733,17 @@
           </article>
         </div>
       </section>
+      <section class="sources">
+        <h2>Fontes e créditos</h2>
+        <ul class="ok">
+          <li><a href="https://www.pierreboulle.fr/la-vie-de-pierre-boulle.html" target="_blank" rel="noopener noreferrer">Associação dos Amigos da Obra de Pierre Boulle — biografia</a></li>
+          <li><a href="https://www.larousse.fr/encyclopedie/litterature/Pierre_Boulle/171991" target="_blank" rel="noopener noreferrer">Larousse — obras e trajetória literária</a></li>
+          <li><a href="https://app.slamlivrerare.org/wp-content/uploads/2021/08/C43-BD-1.pdf" target="_blank" rel="noopener noreferrer">Catálogo de livros raros — edição de <i>La Planète des singes</i></a></li>
+          <li><a href="https://cdn.britannica.com/99/262999-050-662FC1F8/author-pierre-boulle-1997.jpg" target="_blank" rel="noopener noreferrer">Retrato de Pierre Boulle — Encyclopaedia Britannica</a></li>
+          <li><a href="https://land-book.com/" target="_blank" rel="noopener noreferrer">Landbook — inspiração para a interface do site</a></li>
+        </ul>
+        <p style="margin: 1rem auto 0;">A pesquisa e a organização das informações tiveram auxílio do ChatGPT.</p>
+      </section>
     </div>
 
     <div class="page" id="conteudo">
@@ -712,17 +752,17 @@
         <p style="margin-top: 1rem;">Em <i>Planeta dos Macacos</i>, o jornalista Ulysse Mérou chega ao planeta Soror e encontra uma sociedade muito diferente da que conhece. Os macacos ocupam o lugar de poder e os humanos são tratados como animais. A partir dessa inversão a história mostra como é difícil chegar a um lugar onde ninguém entende seus costumes, e nem acredita no que você diz.</p>
       </section>
       <section>
-        <h2>1. Ulysse como estrangeiro</h2>
+        <h2>Ulysse como estrangeiro</h2>
         <p>Ulysse é um estrangeiro em Soror porque não conhece as regras, os hábitos nem a organização daquele mundo. Além disso, os habitantes não o veem como uma pessoa capaz de pensar. Ele precisa observar o que acontece ao redor e encontrar um jeito de se comunicar, enquanto tenta mostrar quem realmente é.</p>
         <p>Essa situação se parece com chegar num lugar novo e sentir que não pertence a ele. No caso de Ulysse sua inteligência também é colocada em dúvida.</p>
       </section>
       <section>
-        <h2>2. O choque cultural</h2>
+        <h2>O choque cultural</h2>
         <p>O choque cultural aparece quando Ulysse percebe que coisas que pareciam naturais para ele funcionam de outro jeito em Soror. Na Terra, os humanos dominam os animais; no planeta, os macacos controlam a sociedade e os humanos vivem em cativeiro. Essa mudança deixa Ulysse confuso e obriga ele a rever tudo que considerava normal.</p>
         <p>A convivência com Zira e Cornélius ajuda Ulysse a aprender mais sobre os costumes e as ideias dos macacos. Ao mesmo tempo o contato com ele faz alguns deles questionarem o que acreditavam sobre os humanos.</p>
       </section>
       <section>
-        <h2>3. Identidade, adaptação e poder</h2>
+        <h2>Identidade, adaptação e poder</h2>
         <p>Mesmo quando ninguém acredita nele, Ulysse continua tentando provar que é humano e que consegue pensar. Sua jornada mostra que adaptar-se a uma cultura nova não significa esquecer quem você é. Também faz pensar em como o poder e o preconceito podem decidir quem recebe respeito e quem é tratado como inferior.</p>
         <div class="table-wrap">
           <table>
@@ -741,21 +781,44 @@
     </div>
 
     <div class="page" id="autor">
-      <section>
-        <h1>Pierre Boulle</h1>
-        <p style="margin-top: 1rem;">Pierre Boulle nasceu em Avignon, na França, em 1912. Estudou engenharia elétrica e, em 1936, foi trabalhar numa plantação de borracha na Malásia. A vida no Sudeste Asiático mudou seus planos: durante a Segunda Guerra Mundial, participou de missões da França Livre e foi capturado e preso em Saigon.</p>
-        <p style="margin-top: 1rem;">Depois da guerra voltou à França e acabou escolhendo a literatura como profissão. A partir de 1949, publicou romances, contos e outros textos, criando histórias de aventura e ficção científica que também fazem o leitor pensar.</p>
-      </section>
-      <section>
-        <h2>Obras e contribuição</h2>
-        <p>Entre seus livros mais conhecidos estão <i>A Ponte do Rio Kwai</i> (1952) e <i>Planeta dos Macacos</i> (1963). Os dois romances ganharam adaptações para o cinema e ajudaram a levar seu trabalho a leitores do mundo todo.</p>
-        <p style="margin-top: 1rem;">A contribuição de Boulle está em combinar histórias envolventes com perguntas sobre a sociedade. Em <i>Planeta dos Macacos</i>, por exemplo, ele inverte a relação entre humanos e animais para questionar preconceitos, hierarquias e a ideia de que um grupo é naturalmente superior a outro.</p>
+      <section class="book">
+        <div class="book-sidebar">
+          <img class="book-cover" src="https://cdn.britannica.com/99/262999-050-662FC1F8/author-pierre-boulle-1997.jpg" alt="Retrato do escritor Pierre Boulle">
+          <aside class="book-info" aria-label="Informações básicas sobre Pierre Boulle">
+            <h2>Informações básicas</h2>
+            <dl>
+              <div><dt>Nascimento</dt><dd>20 de fevereiro de 1912</dd></div>
+              <div><dt>Local de nascimento</dt><dd>Avignon, França</dd></div>
+              <div><dt>Falecimento</dt><dd>30 de janeiro de 1994</dd></div>
+              <div><dt>Local de falecimento</dt><dd>Paris, França</dd></div>
+              <div><dt>Obras conhecidas</dt><dd><i>A Ponte do Rio Kwai</i> (1952) e <i>Planeta dos Macacos</i> (1963)</dd></div>
+            </dl>
+          </aside>
+        </div>
+        <div class="book-details">
+          <h1>Pierre Boulle</h1>
+          <p style="margin: 1rem 0;">Pierre Boulle nasceu em Avignon, na França, em 1912. Estudou engenharia elétrica em Paris e se formou em 1933. Em 1936, mudou-se para a Malásia para trabalhar em uma plantação de seringueiras. A experiência no Sudeste Asiático e o contato com culturas diferentes marcariam sua vida e sua literatura.</p>
+          <p>Durante a Segunda Guerra Mundial, deixou a Malásia para se juntar aos Aliados e trabalhou em missões de inteligência e sabotagem para a França Livre. Em 1942, foi capturado e condenado a trabalhos forçados; ficou preso em Saigon até a libertação. Mais tarde, transformou parte dessas experiências em matéria para suas histórias.</p>
+          <p>De volta a Paris, dedicou-se à escrita e publicou romances, contos e ensaios. Suas narrativas combinam aventura, humor e suspense com reflexões sobre guerra, colonialismo, sociedade e comportamento humano.</p>
+
+          <h2>Obras e contribuição</h2>
+          <p><i>A Ponte do Rio Kwai</i> (1952) e <i>Planeta dos Macacos</i> (1963) são seus romances mais conhecidos. Em suas histórias, Boulle combina aventura com reflexões sobre sociedade, poder e comportamento humano.</p>
+        </div>
       </section>
     </div>
-
     <div class="page" id="livro">
       <section class="book">
-        <img class="book-cover" src="https://m.media-amazon.com/images/I/61fo0Hgb1nL._AC_UF1000,1000_QL80_.jpg" alt="Capa do livro Planeta dos Macacos, de Pierre Boulle">
+        <div class="book-sidebar">
+          <img class="book-cover" src="https://m.media-amazon.com/images/I/61fo0Hgb1nL._AC_UF1000,1000_QL80_.jpg" alt="Capa do livro Planeta dos Macacos, de Pierre Boulle">
+          <aside class="book-info" aria-label="Informações básicas do livro">
+            <h2>Informações básicas</h2>
+            <dl>
+              <div><dt>Idioma original</dt><dd>Francês</dd></div>
+              <div><dt>Autor</dt><dd>Pierre Boulle</dd></div>
+              <div><dt>Data de publicação</dt><dd>10 de janeiro de 1963</dd></div>
+            </dl>
+          </aside>
+        </div>
         <div class="book-details">
           <h1>Planeta dos Macacos</h1>
           <p style="margin: 1rem 0;">Romance de ficção científica escrito pelo francês Pierre Boulle e publicado em 1963. O título original é <i>La Planète des singes</i>.</p>
@@ -852,7 +915,7 @@
 
     document.getElementById("explorar").addEventListener("click", function (evento) {
       evento.preventDefault();
-      document.getElementById("trabalho").scrollIntoView({ behavior: "smooth" });
+      location.hash = "#livro";
     });
 
 
@@ -905,3 +968,13 @@
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
